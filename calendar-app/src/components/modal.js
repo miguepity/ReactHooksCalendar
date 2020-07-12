@@ -17,7 +17,7 @@ export default function Modal(props){
             </button>
           </div>
           <div className="modal-body">
-            ...{moment(day).format("DD-MMM-YYYY")}
+            ...{moment(props.day).format("DD-MMM-YYYY")}
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={props.closeModal}>Close</button>

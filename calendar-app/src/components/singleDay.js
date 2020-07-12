@@ -6,10 +6,13 @@ export default function SingleDay(props){
   
     const [remainder, setRemainder] = useState([])
     const [showModal, isOpenModal] = useState(false)
+    const [selectedDate, setSelectedDate] = useState(new Date())
+
     
     
     const onClickDate = day =>{
         isOpenModal(true)
+        setSelectedDate(day)
         console.log(showModal);
         
     }
@@ -26,7 +29,7 @@ export default function SingleDay(props){
             onClick={() => onClickDate(moment(props.day))}>
                 <span className="number">{props.numberDate}</span>
         </div>
-        {showModal ? <Modal day={props.day} closeModal={()=>isOpenModal(false)}/> : <></>}
+        {showModal ? <Modal day={selectedDate} closeModal={()=>isOpenModal(false)}/> : <></>}
         </>
     )
 }

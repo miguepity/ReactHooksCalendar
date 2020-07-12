@@ -6,7 +6,6 @@ import moment from 'moment'
 
 const Calendar = () => {
     const [currentDate, setCurrentDate] = useState(new Date())
-    const [selectedDate, setSelectedDate] = useState(new Date())
 
     const header = () => {
         
@@ -67,7 +66,6 @@ const Calendar = () => {
                 dateFormat = moment(day).format('D')
                 days.push(
                     <SingleDay monthDay={firstDayMonth} 
-                    selected={selectedDate} 
                     day={day} 
                     numberDate={dateFormat}
                     index={i}/>
