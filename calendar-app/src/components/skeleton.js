@@ -1,5 +1,6 @@
 import './skeleton.css';
 import React, {useState} from 'react';
+import SingleDay from './singleDay'
 import moment from 'moment'
 
 
@@ -50,7 +51,7 @@ const Calendar = () => {
         return <div className="days row">{days}</div>
     }
 
-    const oneDay = () =>{
+    const weekMonth = () =>{
         const firstDayMonth = moment(currentDate).startOf('month')
         const lastDayMonth = moment(currentDate).endOf('month')
         const firstDate = moment(firstDayMonth).startOf('week')
@@ -66,20 +67,17 @@ const Calendar = () => {
                 dateFormat = moment(day).format('D')
                 const sameDay = day
                 days.push(
-                    <div className={`col oneD ${!moment(day).isSame(firstDayMonth, 'month')
-                    ? "disabled" : moment(day).isSame(selectedDate, 'day')
-                    ? "selected": ""} 
-                    ${i===0 || i===6
-                    ? "weekend" : "" }`}
-                    key={day}
-                    onClick={() => onClickDate(moment(sameDay))}>
-                        <span className="number">{dateFormat}</span>
-                    </div>
+                    <SingleDay monthDay={firstDayMonth} 
+                    selected={selectedDate} 
+                    day={day} 
+                    numberDate={dateFormat}
+                    index={i}
+                    onClick={() => onClickDate(moment(sameDay))}/>
                 )
                 day = moment(day).add(1,'d')
             }
             row.push(
-                <div className="row" kewy={day}>{days}</div>
+                <div className="row" key={day}>{days}</div>
             )
             days = []
         }
@@ -94,7 +92,7 @@ const Calendar = () => {
         <div className="calendar">
             <div>{header()}</div>
             <div>{weekDays()}</div>
-            <div>{oneDay()}</div>
+            <div>{weekMonth()}</div>
         </div>
     )
 }
