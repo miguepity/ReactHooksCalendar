@@ -1,0 +1,59 @@
+.header{
+    width: 100%;
+    padding: 1.70em 0;
+    border-bottom: 1px solid black;
+    background: #ffffff;
+}
+.icon{
+    display: inline-block;
+}
+.calendar{
+    display: block;
+    position: relative;
+    width: 98%;
+    height: auto;
+}
+.calendar .header .icon:hover{
+    transform: scale(1.75);
+    color: dodgerblue;
+}
+.calendar .days{
+    color: #ffffff;
+    background: #3973b4;
+    font-weight: 400;
+    border-bottom: 1px solid black;
+    text-transform: uppercase;
+    padding: .70em 0;
+}
+.calendar .body .oneD{
+    position: relative;
+    height: 6em;
+    border-right: 1px solid black;
+    background: #ffffff;    
+}
+.calendar .body .oneD:hover{
+    background: skyblue;
+}
+.calendar .body .row{
+    border-bottom: 1px solid black;
+}
+.calendar .body .row:last-child{
+    border-bottom: none;
+}
+.calendar .body .oneD:last-child{
+    border-right: none;
+}
+.calendar .body .oneD .number{
+    position: absolute;
+    font-size: 80%;
+    line-height: 1;
+    top: .70em;
+    right: .70em;
+    font-weight: 600;
+}
+.calendar .body .disabled{
+    color: grey;
+}
+.calendar .body .weekend{
+    background: lightgrey;
+}

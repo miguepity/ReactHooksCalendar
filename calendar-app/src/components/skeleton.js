@@ -1,5 +1,7 @@
+import './skeleton.css';
 import React, {useState} from 'react';
 import moment from 'moment'
+
 
 const Calendar = () => {
     const [currentDate, setCurrentDate] = useState(new Date())
@@ -11,15 +13,15 @@ const Calendar = () => {
             <div className="header row flex-middle">
                 <div className="col col-start">
                     <div className="icon" onClick={previousMonth}>
-                        chevron_left
+                    <i class="fas fa-chevron-left"></i>                        
                     </div>
                 </div>
                 <div className="col col-center">
-                    <span>{moment(currentDate).format('MMMM YYYY')}</span>
+                    <strong>{moment(currentDate).format('MMMM YYYY')}</strong>
                 </div>
                 <div className="col col-end">
                     <div className="icon" onClick={nextMonth}>
-                        chevron_rigth
+                    <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
             </div>
@@ -27,15 +29,24 @@ const Calendar = () => {
     }
 
     const previousMonth = () =>{
-        setCurrentDate(moment(currentDate).add(1,'M'))
+        setCurrentDate(moment(currentDate).subtract(1,'M'))
     }
 
     const nextMonth = () =>{
-        setCurrentDate(moment(currentDate).subtract(1,'M'))
+        setCurrentDate(moment(currentDate).add(1,'M'))
     }
     
     const weekDays = () =>{
-        const days = moment.weekdays()
+        const weekDays = moment.weekdays()
+        const days = []
+
+        weekDays.map((week,index) =>{
+            days.push(
+                <div className="col col-center" key={index}>
+                    {week}
+                </div>
+            )
+        })
         return <div className="days row">{days}</div>
     }
 
@@ -55,9 +66,11 @@ const Calendar = () => {
                 dateFormat = moment(day).format('D')
                 const sameDay = day
                 days.push(
-                    <div className={`col oneD ${!moment().isSame(day,firstDayMonth)
-                    ? "disable" : moment().isSame(day, selectedDate)
-                    ? "selected": ""}`}
+                    <div className={`col oneD ${!moment(day).isSame(firstDayMonth, 'month')
+                    ? "disabled" : moment(day).isSame(selectedDate, 'day')
+                    ? "selected": ""} 
+                    ${i===0 || i===6
+                    ? "weekend" : "" }`}
                     key={day}
                     onClick={() => onClickDate(moment(sameDay))}>
                         <span className="number">{dateFormat}</span>
@@ -75,7 +88,6 @@ const Calendar = () => {
 
     const onClickDate = day =>{
         setSelectedDate(day)
-        alert(selectedDate)
     }
 
     return (
