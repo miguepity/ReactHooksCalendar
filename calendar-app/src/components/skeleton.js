@@ -14,7 +14,7 @@ const Calendar = () => {
             <div className="header row flex-middle">
                 <div className="col col-start">
                     <div className="icon" onClick={previousMonth}>
-                    <i class="fas fa-chevron-left"></i>                        
+                    <i className="fas fa-chevron-left"></i>                        
                     </div>
                 </div>
                 <div className="col col-center">
@@ -22,7 +22,7 @@ const Calendar = () => {
                 </div>
                 <div className="col col-end">
                     <div className="icon" onClick={nextMonth}>
-                    <i class="fas fa-chevron-right"></i>
+                    <i className="fas fa-chevron-right"></i>
                     </div>
                 </div>
             </div>
@@ -65,14 +65,12 @@ const Calendar = () => {
         while(day <= lastDate){
             for(let i =0; i < 7; i++){
                 dateFormat = moment(day).format('D')
-                const sameDay = day
                 days.push(
                     <SingleDay monthDay={firstDayMonth} 
                     selected={selectedDate} 
                     day={day} 
                     numberDate={dateFormat}
-                    index={i}
-                    onClick={() => onClickDate(moment(sameDay))}/>
+                    index={i}/>
                 )
                 day = moment(day).add(1,'d')
             }
@@ -82,11 +80,7 @@ const Calendar = () => {
             days = []
         }
         return <div className="body">{row}</div>
-    }
-
-    const onClickDate = day =>{
-        setSelectedDate(day)
-    }
+    }    
 
     return (
         <div className="calendar">
