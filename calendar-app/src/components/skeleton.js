@@ -2,6 +2,7 @@ import './skeleton.css';
 import React, {useState} from 'react';
 import SingleDay from './singleDay'
 import moment from 'moment'
+import {Container, Row,Col} from 'react-bootstrap'
 
 
 const Calendar = () => {
@@ -10,21 +11,21 @@ const Calendar = () => {
     const header = () => {
         
         return (
-            <div className="header row flex-middle">
-                <div className="col col-start">
+            <Row className="header">
+                <Col>
                     <div className="icon" onClick={previousMonth}>
                     <i className="fas fa-chevron-left"></i>                        
                     </div>
-                </div>
-                <div className="col col-center">
+                </Col>
+                <Col>
                     <strong>{moment(currentDate).format('MMMM YYYY')}</strong>
-                </div>
-                <div className="col col-end">
+                </Col>
+                <Col>
                     <div className="icon" onClick={nextMonth}>
                     <i className="fas fa-chevron-right"></i>
                     </div>
-                </div>
-            </div>
+                </Col>
+            </Row>
         )
     }
 
@@ -40,7 +41,7 @@ const Calendar = () => {
         const weekDays = moment.weekdays()
         const days = []
 
-        weekDays.map((week,index) =>{
+        weekDays.forEach((week,index) =>{
             days.push(
                 <div className="col col-center" key={index}>
                     {week}
@@ -68,12 +69,13 @@ const Calendar = () => {
                     <SingleDay monthDay={firstDayMonth} 
                     day={day} 
                     numberDate={dateFormat}
-                    index={i}/>
+                    index={i}
+                    key={day-i}/>
                 )
                 day = moment(day).add(1,'d')
             }
             row.push(
-                <div className="row" key={day}>{days}</div>
+                <Row key={day}>{days}</Row>
             )
             days = []
         }

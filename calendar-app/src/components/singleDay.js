@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import moment from 'moment'
-import Modal from './modal'
+import RemainderModal from './modal'
 
 export default function SingleDay(props){
   
@@ -11,8 +11,8 @@ export default function SingleDay(props){
     
     
     const onClickDate = day =>{
-        isOpenModal(true)
         setSelectedDate(day)
+        isOpenModal(true)
         console.log(showModal);
         
     }
@@ -25,11 +25,11 @@ export default function SingleDay(props){
             ${props.index===0 || props.index===6
             ? "weekend" : "" }`}
             key={props.day}
-            data-toggle="modal" data-target="#exampleModal"
             onClick={() => onClickDate(moment(props.day))}>
                 <span className="number">{props.numberDate}</span>
         </div>
-        {showModal ? <Modal day={selectedDate} closeModal={()=>isOpenModal(false)}/> : <></>}
+        {showModal ? <RemainderModal day={selectedDate} show={showModal} closeModal={()=>isOpenModal(false)} 
+                        remainderData={remainder}/> : <></>}
         </>
     )
 }
