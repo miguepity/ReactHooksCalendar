@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function RemainderModal(props){
   const API_KEY = "719c57517d2b1db16229d727f45763ac"
+  const [title, changeTitle] = useState()
   const [color, changeColor] = useState('#fff')
   const [city, setCity] = useState([{"id":4164138,"name":"Miami"}, 
                                     {"id":3600949,"name":"Tegucigalpa"}, 
@@ -17,12 +18,16 @@ export default function RemainderModal(props){
   const [remainderTime, setTime] =useState()
   const [weather, setWeather] = useState()
 
+  const updateInputValue = (evt) =>{
+    changeTitle(evt.target.value)
+  }
+
   const handleChangeComplete = (color) => {
     changeColor(color.hex)
   } 
   const handleDropDownChange = (e) =>{
     setSelectedCity(e.target.value)
-    fetch(`http://api.openweathermap.org/data/2.5/weather?id=${selectedCity}&appid=${API_KEY}`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?id=${e.target.value}&appid=${API_KEY}`)
     .then(res => res.json())
     .then((result) =>{
       setWeather(result.weather[0].description)
@@ -36,7 +41,7 @@ export default function RemainderModal(props){
   }
 
   const toDay = () =>{
-    
+    props.newRemainder(title,color,remainderTime,selectedCity)
     props.closeModal()
   }
 
@@ -62,7 +67,7 @@ export default function RemainderModal(props){
               <div className="input-group-prepend">
                 <span className="input-group-text" id="basic-addon1">Remainder Title:</span>
               </div>
-              <input type="text" className="form-control" aria-describedby="basic-addon1" maxLength="30"/>
+              <input onChange={updateInputValue} type="text" className="form-control" aria-describedby="basic-addon1" maxLength="30"/>
             </div>
             <p>Select City:</p>
             <select onChange={handleDropDownChange}>

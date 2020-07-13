@@ -7,14 +7,14 @@ export default function SingleDay(props){
     const [remainder, setRemainder] = useState([])
     const [showModal, isOpenModal] = useState(false)
     const [selectedDate, setSelectedDate] = useState(new Date())
-
-    
     
     const onClickDate = day =>{
         setSelectedDate(day)
         isOpenModal(true)
-        console.log(showModal);
         
+    }
+    const saveRemainder = (title,color,time,city) =>{
+        console.log(title,color,time,city)
     }
         
     return (
@@ -29,7 +29,7 @@ export default function SingleDay(props){
                 <span className="number">{props.numberDate}</span>
         </div>
         {showModal ? <RemainderModal day={selectedDate} show={showModal} closeModal={()=>isOpenModal(false)} 
-                        remainderData={remainder}/> : <></>}
+                        newRemainder={(title,color,time,city)=>saveRemainder(title,color,time,city)}/> : <></>}
         </>
     )
 }
