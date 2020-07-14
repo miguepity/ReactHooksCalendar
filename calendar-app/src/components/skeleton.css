@@ -29,7 +29,8 @@
     position: relative;
     height: 6em;
     border-right: 1px solid black;
-    background: #ffffff;    
+    background: #ffffff;
+    overflow-y: auto;    
 }
 .calendar .body .oneD:hover{
     background: skyblue;
@@ -56,4 +57,12 @@
 }
 .calendar .body .weekend{
     background: lightgrey;
+}
+.remainder{
+    font-size: 80%;
+    top: .70em;
+    text-align: center;
+    margin-top: 5%;
+    margin-right: 10%;
+    word-wrap: break-word;
 }
