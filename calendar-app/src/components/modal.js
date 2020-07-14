@@ -7,10 +7,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function RemainderModal(props){
   const API_KEY = "719c57517d2b1db16229d727f45763ac"
-  const [title, changeTitle] = useState()
-  const [color, changeColor] = useState('#fff')
-  const [selectedCity, setSelectedCity] = useState()
-  const [remainderTime, setTime] =useState()
+  const [title, changeTitle] = useState(props.toEdit.title)
+  const [color, changeColor] = useState(props.toEdit.color)
+  const [selectedCity, setSelectedCity] = useState(props.toEdit.city)
+  const [remainderTime, setTime] =useState(props.toEdit.time)
   const [weather, setWeather] = useState()
   const city = [{"id":4164138,"name":"Miami"}, 
                 {"id":3600949,"name":"Tegucigalpa"}, 
@@ -41,7 +41,11 @@ export default function RemainderModal(props){
   }
 
   const toDay = () =>{
-    props.newRemainder(title,color,remainderTime,selectedCity)
+    if(props.toEdit!== 0){
+      props.editRemainder(title,color,remainderTime,selectedCity)
+    }else{
+      props.newRemainder(title,color,remainderTime,selectedCity)
+    }
     props.closeModal()
   }
 
@@ -49,7 +53,7 @@ export default function RemainderModal(props){
   let optionCities = city.map((city) => <option value={city.id} key={city.id}>{city.name}</option>)
   return (
     <>
-      <Modal show={props.show} onHide={props.closeModal} animation={false}>
+      <Modal show={props.show} onHide={()=>{props.closeModal(); props.noEdition(); }} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>New Remainder</Modal.Title>
         </Modal.Header>
@@ -67,7 +71,7 @@ export default function RemainderModal(props){
               <div className="input-group-prepend">
                 <span className="input-group-text" id="basic-addon1">Remainder Title:</span>
               </div>
-              <input onChange={updateInputValue} type="text" className="form-control" aria-describedby="basic-addon1" maxLength="30"/>
+              <input value={title} onChange={updateInputValue} type="text" className="form-control" aria-describedby="basic-addon1" maxLength="30"/>
             </div>
             <p>Select City:</p>
             <select onChange={handleDropDownChange}>
@@ -79,7 +83,7 @@ export default function RemainderModal(props){
             <p style={styleObj}>COLOR</p>
             </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.closeModal}>
+          <Button variant="secondary" onClick={()=>{props.closeModal(); props.noEdition();}}>
             Close
           </Button>
           <Button variant="primary" onClick={toDay}>
