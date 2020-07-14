@@ -9,14 +9,14 @@ export default function RemainderModal(props){
   const API_KEY = "719c57517d2b1db16229d727f45763ac"
   const [title, changeTitle] = useState()
   const [color, changeColor] = useState('#fff')
-  const [city, setCity] = useState([{"id":4164138,"name":"Miami"}, 
-                                    {"id":3600949,"name":"Tegucigalpa"}, 
-                                    {"id":3117735,"name":"Madrid"}, 
-                                    {"id":5134295,"name":"Rome"},
-                                    {"id":3688689,"name":"Bogotá"}])
   const [selectedCity, setSelectedCity] = useState()
   const [remainderTime, setTime] =useState()
   const [weather, setWeather] = useState()
+  const city = [{"id":4164138,"name":"Miami"}, 
+                {"id":3600949,"name":"Tegucigalpa"}, 
+                {"id":3117735,"name":"Madrid"}, 
+                {"id":5134295,"name":"Rome"},
+                {"id":3688689,"name":"Bogotá"}]
 
   const updateInputValue = (evt) =>{
     changeTitle(evt.target.value)
@@ -49,7 +49,7 @@ export default function RemainderModal(props){
   let optionCities = city.map((city) => <option value={city.id} key={city.id}>{city.name}</option>)
   return (
     <>
-      <Modal show={props.show} onHide={props.closeModal}>
+      <Modal show={props.show} onHide={props.closeModal} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>New Remainder</Modal.Title>
         </Modal.Header>
@@ -79,10 +79,10 @@ export default function RemainderModal(props){
             <p style={styleObj}>COLOR</p>
             </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={toDay}>
+          <Button variant="secondary" onClick={props.closeModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={props.closeModal}>
+          <Button variant="primary" onClick={toDay}>
             Save Changes
           </Button>
         </Modal.Footer>
