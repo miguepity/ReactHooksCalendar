@@ -58,7 +58,7 @@
 .calendar .body .weekend{
     background: lightgrey;
 }
-.remainder{
+.reminder{
     font-size: 80%;
     top: .70em;
     text-align: center;
@@ -69,4 +69,8 @@
 }
 .calendar .body .oneD:hover .number, .calendar .body .selected .number{
     background: rgb(161, 47, 255)
+}
+.delete{
+    margin-left: 20%;
+    width: 50%;
 }
