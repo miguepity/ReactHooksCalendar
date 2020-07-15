@@ -42,15 +42,14 @@ export default function SingleDay(props) {
     setEditReminder(0);
   };
 
-  let dateReminder = reminders.map((oneReminder) => (
-      <DateReminder key={`singleDay-${oneReminder}`}
+  let dateReminder = reminders.map((oneReminder,index) => (
+      <DateReminder key={`singleDay1-${index}-${oneReminder}`}
         dayReminder={oneReminder}
         toEdit={() => setEditReminder(oneReminder)}
       />
   ));
     
   const changeDelete = (value)=>{
-      console.log("probando", value)
         setDelete(value);
     }
 
