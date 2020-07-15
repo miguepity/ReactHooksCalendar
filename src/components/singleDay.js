@@ -64,6 +64,10 @@ export default function SingleDay(props) {
             }).sort((a, b) => (a.time > b.time ? 1 : -1));
             props.setReminders(newReminders)
         }else if(forDelete === 2){
+            const newReminders = props.reminders.filter((reminder) =>{
+                return !moment(reminder.date).isSame(editReminder.date)
+                    
+            }).sort((a, b) => (a.time > b.time ? 1 : -1));
             props.setReminders([])
         }
         setEditReminder(0)

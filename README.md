@@ -17,6 +17,7 @@ Calendar is an app where you can add and remove reminders.
 - Handle overflow when multiple reminders appear on the same date
 - Ability to remove a single reminder
 - Ability to remove all reminders from a day
+- Suport more than the current month
 
 
 ### Tech
