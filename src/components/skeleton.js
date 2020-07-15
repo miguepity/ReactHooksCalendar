@@ -83,7 +83,6 @@ const Calendar = () => {
     return <div className="body">{row}</div>;
   };
   const addNewReminder = (reminder) =>{
-      console.log(reminder)
       setReminders(reminder)
   }
 

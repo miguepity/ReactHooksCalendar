@@ -44,7 +44,6 @@ export default function SingleDay(props) {
 
   let dateReminder = props.reminders.map((oneReminder,index) => 
       {
-          console.log(moment(props.day).isSame(oneReminder.date) )
           return (moment(props.day).isSame(oneReminder.date) ?(
             <DateReminder key={`singleDay1-${index}-${oneReminder}`}
               dayReminder={oneReminder}
