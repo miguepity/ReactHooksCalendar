@@ -6,6 +6,7 @@ import { Row, Col } from "react-bootstrap";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [reminders, setReminders] = useState([]);
 
   const header = () => {
     return (
@@ -70,6 +71,8 @@ const Calendar = () => {
             numberDate={dateFormat}
             index={i}
             key={day - i}
+            reminders={reminders}
+            setReminders={(reminder)=>addNewReminder(reminder)}
           />
         );
         day = moment(day).add(1, "d");
@@ -79,6 +82,10 @@ const Calendar = () => {
     }
     return <div className="body">{row}</div>;
   };
+  const addNewReminder = (reminder) =>{
+      console.log(reminder)
+      setReminders(reminder)
+  }
 
   return (
     <div className="calendar">

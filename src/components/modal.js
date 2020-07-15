@@ -50,7 +50,7 @@ export default function ReminderModal(props) {
     if (props.toEdit !== 0) {
       props.editReminder(title, color, reminderTime, selectedCity);
     } else {
-      props.newReminder(title, color, reminderTime, selectedCity);
+      props.newReminder(title, color, reminderTime, selectedCity, props.day);
     }
     props.closeModal();
   };
