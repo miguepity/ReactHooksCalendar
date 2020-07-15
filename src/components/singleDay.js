@@ -29,7 +29,7 @@ export default function SingleDay(props) {
 
   const edit = (title, color, time, city) => {
     props.reminders.forEach((oneReminder) => {
-      if (oneReminder.city === editReminder.city) {
+      if (oneReminder.title === editReminder.title && oneReminder.date === editReminder.date) {
         oneReminder.title = title;
         oneReminder.color = color;
         oneReminder.time = time;
