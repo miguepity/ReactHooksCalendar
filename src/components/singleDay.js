@@ -13,7 +13,7 @@ export default function SingleDay(props) {
     setSelectedDate(day);
     isOpenModal(true);
   };
-  const saveReminder = (title, color, time, city,date) => {
+  const saveReminder = (title, color, time, city = "4164138",date) => {
     let newReminder = {
       title: title,
       color: color,
