@@ -68,7 +68,7 @@ export default function SingleDay(props) {
                 return !moment(reminder.date).isSame(editReminder.date)
                     
             }).sort((a, b) => (a.time > b.time ? 1 : -1));
-            props.setReminders([])
+            props.setReminders(newReminders)
         }
         setEditReminder(0)
         isOpenModal(false)
